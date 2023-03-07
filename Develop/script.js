@@ -13,6 +13,10 @@ $(function () {
     var week = time.week['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var year = time.year['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+    var hours = time.hours();
+    var minutes = time.minutes();
+    
+
   }
 
   // TODO: Add a listener for click events on the save button. This code should
