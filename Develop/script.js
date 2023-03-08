@@ -16,7 +16,14 @@ $(function () {
     var hours = time.hours();
     var minutes = time.minutes();
     
+    Target.innerText = 
+    `${year[month]}. ${date}. ${week[day]}. ` +
+    `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 
+  }
+  clock();
+  setInterval(clock, 1000);
+  
   }
 
   // TODO: Add a listener for click events on the save button. This code should
