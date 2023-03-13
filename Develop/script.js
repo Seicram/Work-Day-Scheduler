@@ -23,7 +23,40 @@ $(function () {
   }
   clock();
   setInterval(clock, 1000);
+  $(".saveBtn").on("click", function () {
+    console.log(this);
+    var scheduledEvent = $(this).siblings(".description").val();
+    var scheduledTime = $(this).parent().attr("id");
+
+    localStorage.setItem(scheduledTime, scheduledEvent);
+
+  })
+  $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+  $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+  $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+  $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+  $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+  $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+  $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+  $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+  $("#hour-17 .description").val(localStorage.getItem("hour-17"));
+  const dayjs = require("dayjs");
   
+  function color() {
+    var currentTime = dayjs().get('h');
+  
+    var hour9 = 9;
+    var hour10 = 10;
+    var hour11 = 11;
+    var hour12 = 12;
+    var hour13 = 13;
+    var hour14 = 14;
+    var hour15 = 15;
+    var hour16 = 16;
+    var hour17 = 17;
+
+   
+
   }
 
   // TODO: Add a listener for click events on the save button. This code should
