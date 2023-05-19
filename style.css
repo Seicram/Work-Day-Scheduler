@@ -1,11 +1,11 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  color: beige;
+  color: black;
 }
 
 header {
-  background-color: lightslategray;
+  background-color: rgb(225, 235, 248);
 }
 
 textarea {
@@ -55,10 +55,14 @@ textarea {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
-  color: white;
+  color: rgb(228, 162, 162);
 }
 
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+.fc-highlight {
+  background-color: mediumblue;
 }

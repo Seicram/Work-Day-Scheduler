@@ -1,89 +1,107 @@
-$(document).ready(function() {
-  let currentHour = dayjs().format("HH");
-  const timeBlockArray = ["09", "10", "11", "12", "13", "14", "15", "16", "17"];
-  let currentDay = $("#currentDay");
-  let timeBlocks = $(".time-block");
-  let saveBtns = $(".saveBtn");
-  let inputs = $(".description");
+$(function () {
+  let calendar = $("#calendar"); // Container element for FullCalendar
 
-  console.log(currentHour);
+  // Initialize FullCalendar
+  calendar.fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay'
+    },
+    defaultView: 'month', // Initial view set to month
+    now: moment(), // Set the initial date/time to the current moment
+    editable: true,
+    selectable: true, // Enable selection of time range
+    selectHelper: true, // Display a placeholder event while selecting
+    slotDuration: '00:15:00', // Set the slot duration to 15 minutes
+    events: getStoredEvents(), // Load events from local storage
 
-  saveBtns.on("click", function() {
-    let key = $(this).data("key");
-    let value = $("#" + key).val();
-    localStorage.setItem(key, value);
-    console.log(localStorage);
-  });
+    // Day click handler
+    dayClick: function (date, jsEvent, view) {
+      // Remove highlighting from previously clicked date
+      $('.fc-highlight').removeClass('fc-highlight');
+      // Highlight the clicked date
+      $(this).addClass('fc-highlight');
+    },
 
-  inputs.each(function() {
-    let key = $(this).attr("id");
-    let storedValue = localStorage.getItem(key);
-    if (storedValue) {
-      $(this).val(storedValue);
+    // Time range selection callback
+    select: function (startDate, endDate, jsEvent, view) {
+      // Prompt the user to enter the event title
+      let title = prompt("Enter a title for the event:");
+      if (title) {
+        // Create the event object with the selected time range
+        let event = {
+          title: title,
+          start: startDate,
+          end: endDate,
+          allDay: false
+        };
+
+        // Render the event on the calendar
+        calendar.fullCalendar('renderEvent', event, true);
+
+        // Save the updated events to local storage
+        saveEvents();
+      }
+
+      // Clear the selection
+      calendar.fullCalendar('unselect');
+    },
+
+    // Event click handler
+    eventClick: function (calEvent, jsEvent, view) {
+      let action = prompt("Do you want to edit or delete the event? Enter 'edit' or 'delete':");
+      if (action === 'edit') {
+        let newTitle = prompt("Enter a new title for the event:", calEvent.title);
+        if (newTitle) {
+          calEvent.title = newTitle;
+          calendar.fullCalendar('updateEvent', calEvent); // Update the event on the calendar
+          saveEvents(); // Save the updated events to local storage
+        }
+      } else if (action === 'delete') {
+        if (confirm("Are you sure you want to delete this event?")) {
+          calendar.fullCalendar('removeEvents', calEvent._id); // Remove the event from the calendar
+          saveEvents(); // Save the updated events to local storage
+        }
+      }
+    },
+
+    viewRender: function (view, element) {
+      let currentDate = calendar.fullCalendar('getDate');
+      let formattedDate = currentDate.format('dddd, MMM D, YYYY');
+      $('.fc-toolbar .fc-center').text(formattedDate);
+    },
+
+    // Set specific days as selectable
+    selectConstraint: {
+      dow: [1, 2, 3, 4, 5, 6, 7] // Sunday to Monday (1-7)
+      // dow: [3] // Only Tuesday (3)
+      // You can modify the array to include the specific days you want to allow selection for
     }
   });
 
-  timeBlockArray.forEach(function(id) {
-    if (id < currentHour) {
-      $("#" + id).addClass("past");
-    } else if (id === currentHour) {
-      $("#" + id).addClass("present");
-    } else if (id > currentHour) {
-      $("#" + id).addClass("future");
-    }
-  });
-
-  let today = dayjs().format("dddd, MMM D, YYYY");
-  currentDay.text(today);
-
-  // View buttons
-  const dayViewBtn = $("#dayViewBtn");
-  const weekViewBtn = $("#weekViewBtn");
-  const monthViewBtn = $("#monthViewBtn");
-
-  function showDayView() {
-    // Update your scheduler display for day view
-    // Example: show/hide appropriate elements based on day view
-    timeBlocks.show();
-    
+  // Save events to local storage
+  function saveEvents() {
+    let events = calendar.fullCalendar('clientEvents');
+    let serializedEvents = events.map(function (event) {
+      return {
+        title: event.title,
+        start: event.start.format(), // Convert date to string format
+        end: event.end.format(), // Convert date to string format
+        allDay: event.allDay
+      };
+    });
+    localStorage.setItem('calendarEvents', JSON.stringify(serializedEvents));
   }
 
-  function showWeekView() {
-    // Update your scheduler display for week view
-    // Example: show/hide appropriate elements based on week view
-    timeBlocks.hide();
-        // TODO: Implement week view display logic
-        $(".time-block:lt(5)").show();
+  // Get stored events from local storage
+  function getStoredEvents() {
+    let storedEvents = localStorage.getItem('calendarEvents');
+    return storedEvents ? JSON.parse(storedEvents) : [];
   }
 
-  function showMonthView() {
-    // Update your scheduler display for month view
-    // Example: show/hide appropriate elements based on month view
-    timeBlocks.hide();
-    // TODO: Implement month view display logic
-    $(".time-block:lt(2)").show();
-  }
-
-  // Add event listeners to view buttons
-  dayViewBtn.click(function () {
-    $(".viewBtn").removeClass("active");
-    dayViewBtn.addClass("active");
-    showDayView();
+  // Today button click handler
+  $("#todayButton").click(function() {
+    calendar.fullCalendar('today'); // Go to today's date
   });
-
-  weekViewBtn.click(function () {
-    $(".viewBtn").removeClass("active");
-    weekViewBtn.addClass("active");
-    showWeekView();
-  });
-
-  monthViewBtn.click(function () {
-    $(".viewBtn").removeClass("active");
-    monthViewBtn.addClass("active");
-    showMonthView();
-  });
-
-  // Default: Day view active
-  dayViewBtn.addClass("active");
-  showDayView();
 });
