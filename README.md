@@ -1,99 +1,41 @@
-# 05 Third-Party APIs: Work Day Scheduler
 
-## Your Task
+# Work Day Scheduler
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+## Table of Contents
 
-You'll need to use the [Day.js](https://day.js.org/en/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Day.js in the browser.
+- [HTML](#html)
+- [JavaScript](#javascript)
+- [CSS](#css)
 
-## User Story
+- [Description](#description)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
-```md
-AS AN employee with a busy schedule
-I WANT to add important events to a daily planner
-SO THAT I can manage my time effectively
-```
+## HTML
 
-## Acceptance Criteria
+This project includes an HTML file that represents the web page.
 
-```md
-GIVEN I am using a daily planner to create a schedule
-WHEN I open the planner
-THEN the current day is displayed at the top of the calendar
-WHEN I scroll down
-THEN I am presented with timeblocks for standard business hours
-WHEN I view the timeblocks for that day
-THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-WHEN I click into a timeblock
-THEN I can enter an event
-WHEN I click the save button for that timeblock
-THEN the text for that event is saved in local storage
-WHEN I refresh the page
-THEN the saved events persist
-```
+## JavaScript
 
-The following animation demonstrates the application functionality:
+This project includes JavaScript files that provide the interactive functionality of the web page.
 
-<!-- @TODO: create ticket to review/update image) -->
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
+## CSS
 
-## Grading Requirements
+This project includes a CSS file that defines the styles and layout of the web page.
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## Description
 
-This Challenge is graded based on the following criteria:
+The "Work Day Scheduler" project is a web development endeavor aimed at achieving a desired outcome by combining the power of various web development technologies in a fusion to achieve the desired outcome. The project utilizes JavaScript to create dynamic and interactive web pages. By building a seamless and engaging user experience, the project aims to provide a captivating web browsing experience. The combination of JavaScript, skillful use of HTML for content structure, CSS for styling and layout, and JavaScript for interactivity and behavior, with meticulous attention to detail and a focus on user experience, the project strives to create a modern and elegant web application. With a responsive and adaptive design, the project ensures the website looks great on different browsers and platforms. By following industry best practices and staying up-to-date with modern web development techniques, the project aims to deliver excellent end result that meets the needs of its target audience. In summary, the "Work Day Scheduler" project represents the application of web programming skills to create a web application that is dynamic and interactive, visually appealing, and user-friendly.
 
-### Technical Acceptance Criteria: 40%
+## Usage
 
-* Satisfies all of the above acceptance criteria plus the following:
+The "Work Day Scheduler" project offers a practical application of web development skills, showcasing the synergy of HTML, CSS, and JavaScript in building a dynamic and interactive web experience. The project incorporates html, javascript, javascript, css to enhance the user interface and deliver a visually appealing design. Users can explore the website and enjoying the visual aesthetics, experiencing a seamless web experience. The project encourages user engagement and interactivity through its user-friendly user interface and intuitive navigation. With a responsive design and compatibility across various screen sizes and platforms, the web page adapts seamlessly to different devices and browsers, ensuring a consistent experience for all users. By harness the power of web development technologies, the "Work Day Scheduler" project provides a flexible and interactive web experience that is visually appealing and user-friendly.
 
-  * Uses a date utility library to work with date and time
+## Credits
 
-### Deployment: 32%
+This project was developed by Marcies Smith.
 
-* Application deployed at live URL
+## License
 
-* Application loads with no errors
-
-* Application GitHub URL submitted
-
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the Challenge instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+Licensed under UNC Coding Boot Camp - UNC-Chapel Hill
